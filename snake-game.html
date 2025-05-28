@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game - Main Web Easter Egg</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="snake-game.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Main Web</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="api-docs.html" class="nav-link">API Docs</a>
+                </li>
+            </ul>
+            <div class="nav-controls">
+                <div class="theme-toggle" id="themeToggle" title="Toggle theme">
+                    <svg class="theme-icon light-icon" viewBox="0 0 24 24" width="20" height="20">
+                        <circle cx="12" cy="12" r="5" fill="currentColor"/>
+                        <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <svg class="theme-icon dark-icon" viewBox="0 0 24 24" width="20" height="20">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
+                    </svg>
+                    <svg class="theme-icon pink-icon" viewBox="0 0 24 24" width="20" height="20" style="display: none;">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="snake-game-container">
+        <header class="game-header">
+            <h1 class="game-title">Snake Game</h1>
+            <p class="game-subtitle">Easter Egg Unlocked! Reach 15 points for a special message.</p>
+        </header>
+
+        <div class="game-area">
+            <div class="game-info">
+                <div class="score-display">
+                    <span class="score-label">Score:</span>
+                    <span class="score-value" id="scoreValue">0</span>
+                </div>
+                <div class="high-score-display">
+                    <span class="high-score-label">Best:</span>
+                    <span class="high-score-value" id="highScoreValue">0</span>
+                </div>
+            </div>
+
+            <div class="game-canvas-container">
+                <canvas id="gameCanvas" width="400" height="400"></canvas>
+                <div class="game-overlay" id="gameOverlay">
+                    <div class="overlay-content">
+                        <h2 id="overlayTitle">Snake Game</h2>
+                        <p id="overlayMessage">Press SPACE to start or use arrow keys / WASD to move</p>
+                        <button id="startButton" class="game-button">Start Game</button>
+                        <button id="restartButton" class="game-button" style="display: none;">Play Again</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-controls">
+                <div class="controls-info">
+                    <h3>Controls:</h3>
+                    <div class="control-item">
+                        <span class="control-keys">↑ ↓ ← →</span>
+                        <span class="control-desc">Arrow Keys</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="control-keys">W A S D</span>
+                        <span class="control-desc">Alternative</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="control-keys">SPACE</span>
+                        <span class="control-desc">Start/Pause</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="control-keys">R</span>
+                        <span class="control-desc">Restart</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="return-section">
+            <a href="index.html" class="return-button">
+                <i class="fas fa-arrow-left"></i>
+                Return to Main Web
+            </a>
+        </div>
+
+        <!-- Victory Modal -->
+        <div class="victory-modal" id="victoryModal">
+            <div class="victory-content">
+                <div class="victory-animation">
+                    <div class="victory-emoji"></div>
+                    <h2 class="victory-title">HEHEHEHE</h2>
+                    <p class="victory-message">Congratulations! You reached 15 points!</p>
+                    <div class="victory-confetti">
+                        <div class="confetti"></div>
+                        <div class="confetti"></div>
+                        <div class="confetti"></div>
+                        <div class="confetti"></div>
+                        <div class="confetti"></div>
+                    </div>
+                </div>
+                <button id="continueButton" class="game-button">Continue Playing</button>
+                <button id="returnHomeButton" class="game-button secondary">Return to Main Web</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="snake-game.js"></script>
+</body>
+</html>
